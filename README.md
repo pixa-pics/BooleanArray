@@ -197,6 +197,15 @@ let charge = setFixed.charge;
 charge();
 ```
 
+#### `invert`
+This getter function returns a function that invert all bits in the BitArray.
+
+```javascript
+let setFixed = new SetFixed(64);
+let invert = setFixed.invert;
+invert();
+```
+
 #### `forEach`
 This getter function returns a function that iterates over the elements in the SetFixed, applying a given function.
 
