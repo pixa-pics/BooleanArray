@@ -1,0 +1,35 @@
+{
+  "name": "@asaitama/boolean-array",
+  "version": "1.0.0",
+  "description": "[6.2kB] Typed Array of Boolean values using only 1 bits per value with a fixed yet dynamic range of keys (auto length)",
+  "devDependencies": {
+    "tinyify": "^4.0.0"
+  },
+  "build": {},
+  "scripts": {},
+  "author": "Affolter Matias",
+  "keywords": [
+    "BitArray",
+    "Set",
+    "SetFixed",
+    "boolean",
+    "binary",
+    "selection",
+    "lightweight",
+    "performance",
+    "TypedArray",
+    "TypedBitArray",
+    "Uint1Array"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pixa-pics/BooleanArray.git"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "dependencies": {
+    "core-js": "^3.27.1"
+  }
+}
