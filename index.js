@@ -91,6 +91,8 @@ function BitArray(s) {
         0b10111111111111111111111111111111,
         0b01111111111111111111111111111111
     );
+
+    this.M_A_ = this.l_ > 0xFFFF ? new Uint32Array(32): this.l_ > 0xFF ? new Uint16Array(32): new Uint8Array(32);
 }
 
 Object.defineProperty(BitArray.prototype, 'readFourBytes', {
@@ -99,44 +101,44 @@ Object.defineProperty(BitArray.prototype, 'readFourBytes', {
         return function(i) {
             "use strict";
             i = (i | 0) >>> 0;
-            var a = [], b = this.a_[(i | 0) >>> 5];
+            var y = 0, b = this.a_[(i | 0) >>> 5];
 
-            if((b & this.M_OR_[0]|0) == (this.M_OR_[0]|0)){ a.push(i|0) }
-            if((b & this.M_OR_[1]|0) == (this.M_OR_[1]|0)){ a.push(i+1|0) }
-            if((b & this.M_OR_[2]|0) == (this.M_OR_[2]|0)){ a.push(i+2|0) }
-            if((b & this.M_OR_[3]|0) == (this.M_OR_[3]|0)){ a.push(i+3|0) }
-            if((b & this.M_OR_[4]|0) == (this.M_OR_[4]|0)){ a.push(i+4|0) }
-            if((b & this.M_OR_[5]|0) == (this.M_OR_[5]|0)){ a.push(i+5|0) }
-            if((b & this.M_OR_[6]|0) == (this.M_OR_[6]|0)){ a.push(i+6|0) }
-            if((b & this.M_OR_[7]|0) == (this.M_OR_[7]|0)){ a.push(i+7|0) }
-            if((b & this.M_OR_[8]|0) == (this.M_OR_[8]|0)){ a.push(i+8|0) }
-            if((b & this.M_OR_[9]|0) == (this.M_OR_[9]|0)){ a.push(i+9|0) }
-            if((b & this.M_OR_[10]|0) == (this.M_OR_[10]|0)){ a.push(i+10|0) }
-            if((b & this.M_OR_[11]|0) == (this.M_OR_[11]|0)){ a.push(i+11|0) }
-            if((b & this.M_OR_[12]|0) == (this.M_OR_[12]|0)){ a.push(i+12|0) }
-            if((b & this.M_OR_[13]|0) == (this.M_OR_[13]|0)){ a.push(i+13|0) }
-            if((b & this.M_OR_[14]|0) == (this.M_OR_[14]|0)){ a.push(i+14|0) }
-            if((b & this.M_OR_[15]|0) == (this.M_OR_[15]|0)){ a.push(i+15|0) }
-            if((b & this.M_OR_[16]|0) == (this.M_OR_[16]|0)){ a.push(i+16|0) }
-            if((b & this.M_OR_[17]|0) == (this.M_OR_[17]|0)){ a.push(i+17|0) }
-            if((b & this.M_OR_[18]|0) == (this.M_OR_[18]|0)){ a.push(i+18|0) }
-            if((b & this.M_OR_[19]|0) == (this.M_OR_[19]|0)){ a.push(i+19|0) }
-            if((b & this.M_OR_[20]|0) == (this.M_OR_[20]|0)){ a.push(i+20|0) }
-            if((b & this.M_OR_[21]|0) == (this.M_OR_[21]|0)){ a.push(i+21|0) }
-            if((b & this.M_OR_[22]|0) == (this.M_OR_[22]|0)){ a.push(i+22|0) }
-            if((b & this.M_OR_[23]|0) == (this.M_OR_[23]|0)){ a.push(i+23|0) }
-            if((b & this.M_OR_[24]|0) == (this.M_OR_[24]|0)){ a.push(i+24|0) }
-            if((b & this.M_OR_[25]|0) == (this.M_OR_[25]|0)){ a.push(i+25|0) }
-            if((b & this.M_OR_[26]|0) == (this.M_OR_[26]|0)){ a.push(i+26|0) }
-            if((b & this.M_OR_[27]|0) == (this.M_OR_[27]|0)){ a.push(i+27|0) }
-            if((b & this.M_OR_[28]|0) == (this.M_OR_[28]|0)){ a.push(i+28|0) }
-            if((b & this.M_OR_[29]|0) == (this.M_OR_[29]|0)){ a.push(i+29|0) }
-            if((b & this.M_OR_[30]|0) == (this.M_OR_[30]|0)){ a.push(i+30|0) }
-            if((b & this.M_OR_[31]|0) == (this.M_OR_[31]|0)){ a.push(i+31|0) }
+            if((b & this.M_OR_[0]|0) == (this.M_OR_[0]|0)){ this.M_A_[y++] = i|0; }
+            if((b & this.M_OR_[1]|0) == (this.M_OR_[1]|0)){ this.M_A_[y++] = i+1|0; }
+            if((b & this.M_OR_[2]|0) == (this.M_OR_[2]|0)){ this.M_A_[y++] = i+2|0; }
+            if((b & this.M_OR_[3]|0) == (this.M_OR_[3]|0)){ this.M_A_[y++] = i+3|0; }
+            if((b & this.M_OR_[4]|0) == (this.M_OR_[4]|0)){ this.M_A_[y++] = i+4|0; }
+            if((b & this.M_OR_[5]|0) == (this.M_OR_[5]|0)){ this.M_A_[y++] = i+5|0; }
+            if((b & this.M_OR_[6]|0) == (this.M_OR_[6]|0)){ this.M_A_[y++] = i+6|0; }
+            if((b & this.M_OR_[7]|0) == (this.M_OR_[7]|0)){ this.M_A_[y++] = i+7|0; }
+            if((b & this.M_OR_[8]|0) == (this.M_OR_[8]|0)){ this.M_A_[y++] = i+8|0; }
+            if((b & this.M_OR_[9]|0) == (this.M_OR_[9]|0)){ this.M_A_[y++] = i+9|0; }
+            if((b & this.M_OR_[10]|0) == (this.M_OR_[10]|0)){ this.M_A_[y++] = i+10|0; }
+            if((b & this.M_OR_[11]|0) == (this.M_OR_[11]|0)){ this.M_A_[y++] = i+11|0; }
+            if((b & this.M_OR_[12]|0) == (this.M_OR_[12]|0)){ this.M_A_[y++] = i+12|0; }
+            if((b & this.M_OR_[13]|0) == (this.M_OR_[13]|0)){ this.M_A_[y++] = i+13|0; }
+            if((b & this.M_OR_[14]|0) == (this.M_OR_[14]|0)){ this.M_A_[y++] = i+14|0; }
+            if((b & this.M_OR_[15]|0) == (this.M_OR_[15]|0)){ this.M_A_[y++] = i+15|0; }
+            if((b & this.M_OR_[16]|0) == (this.M_OR_[16]|0)){ this.M_A_[y++] = i+16|0; }
+            if((b & this.M_OR_[17]|0) == (this.M_OR_[17]|0)){ this.M_A_[y++] = i+17|0; }
+            if((b & this.M_OR_[18]|0) == (this.M_OR_[18]|0)){ this.M_A_[y++] = i+18|0; }
+            if((b & this.M_OR_[19]|0) == (this.M_OR_[19]|0)){ this.M_A_[y++] = i+19|0; }
+            if((b & this.M_OR_[20]|0) == (this.M_OR_[20]|0)){ this.M_A_[y++] = i+20|0; }
+            if((b & this.M_OR_[21]|0) == (this.M_OR_[21]|0)){ this.M_A_[y++] = i+21|0; }
+            if((b & this.M_OR_[22]|0) == (this.M_OR_[22]|0)){ this.M_A_[y++] = i+22|0; }
+            if((b & this.M_OR_[23]|0) == (this.M_OR_[23]|0)){ this.M_A_[y++] = i+23|0; }
+            if((b & this.M_OR_[24]|0) == (this.M_OR_[24]|0)){ this.M_A_[y++] = i+24|0; }
+            if((b & this.M_OR_[25]|0) == (this.M_OR_[25]|0)){ this.M_A_[y++] = i+25|0; }
+            if((b & this.M_OR_[26]|0) == (this.M_OR_[26]|0)){ this.M_A_[y++] = i+26|0; }
+            if((b & this.M_OR_[27]|0) == (this.M_OR_[27]|0)){ this.M_A_[y++] = i+27|0; }
+            if((b & this.M_OR_[28]|0) == (this.M_OR_[28]|0)){ this.M_A_[y++] = i+28|0; }
+            if((b & this.M_OR_[29]|0) == (this.M_OR_[29]|0)){ this.M_A_[y++] = i+29|0; }
+            if((b & this.M_OR_[30]|0) == (this.M_OR_[30]|0)){ this.M_A_[y++] = i+30|0; }
+            if((b & this.M_OR_[31]|0) == (this.M_OR_[31]|0)){ this.M_A_[y++] = i+31|0; }
 
 
-            return a;
-    }},
+            return this.M_A_.subarray(0, y|0);
+        }},
     enumerable: false,
     configurable: false
 });
@@ -150,7 +152,7 @@ Object.defineProperty(BitArray.prototype, 'readBit', {
             var m_or = this.M_OR_[i & 31];
             i = (i | 0) >>> 5;
             return (this.a_[i|0] & m_or | 0) == (m_or|0);
-    }},
+        }},
     enumerable: false,
     configurable: false
 });
@@ -164,7 +166,7 @@ Object.defineProperty(BitArray.prototype, 'writeBit1', {
             var m_or = this.M_OR_[i & 31];
             i = (i | 0) >>> 5;
             this.a_[i|0] = this.a_[i|0] | m_or;
-    }},
+        }},
     enumerable: false,
     configurable: false
 });
@@ -178,7 +180,7 @@ Object.defineProperty(BitArray.prototype, 'writeBit0', {
             var m_and = this.M_AND_[i & 31];
             i = (i | 0) >>> 5;
             this.a_[i|0] = this.a_[i|0] & m_and;
-    }},
+        }},
     enumerable: false,
     configurable: false
 });
@@ -190,7 +192,7 @@ Object.defineProperty(BitArray.prototype, 'clear', {
         return function() {
             "use strict";
             this.a_.fill(0);
-    }},
+        }},
     enumerable: false,
     configurable: false
 });
@@ -201,7 +203,7 @@ Object.defineProperty(BitArray.prototype, 'charge', {
         return function() {
             "use strict";
             this.a_.fill(0xFFFFFFFF);
-    }},
+        }},
     enumerable: false,
     configurable: false
 });
@@ -258,10 +260,13 @@ Object.defineProperty(SetFixed.prototype, 'length', {
 Object.defineProperty(SetFixed.prototype, 'indexes', {
     get: function() {
         "use strict";
-        var c = this.length > 0xFFFF ? Uint32Array: this.length > 0xFF ? Uint16Array: Uint8Array, a = [], l = this.length|0, l128 = l-128|0, i = 0;
-        for (; (i|0) < (l128|0); i = (i + 128 | 0)>>>0) {a = a.concat(this.a_.readFourBytes(i|0), this.a_.readFourBytes(i+32|0), this.a_.readFourBytes(i+64|0), this.a_.readFourBytes(i+96|0));}
-        for (; (i|0) < (l|0); i = (i + 32 | 0)>>>0) { a = a.concat(this.a_.readFourBytes(i|0));}
-        return c.from(a);
+        var c = this.length > 0xFFFF ? Uint32Array: this.length > 0xFF ? Uint16Array: Uint8Array, a = new c(this.s_), l = this.length|0, i = 0, y = 0, p = [];
+        for (; (i|0) < (l|0); i = (i + 32 | 0)>>>0) {
+            p = this.a_.readFourBytes(i|0);
+            a.set(p, y|0);
+            y = y + p.length|0;
+        }
+        return a;
     },
     enumerable: false,
     configurable: false
@@ -382,7 +387,7 @@ Object.defineProperty(SetFixed.prototype, 'map', {
         return function(func) {
             "use strict";
             return this.indexes.map(func);
-    }},
+        }},
     enumerable: false,
     configurable: false
 });
@@ -393,7 +398,7 @@ Object.defineProperty(SetFixed.prototype, 'filter', {
         return function(func) {
             "use strict";
             return this.indexes.filter(func);
-    }},
+        }},
     enumerable: false,
     configurable: false
 });

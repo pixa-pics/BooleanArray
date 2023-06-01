@@ -1,6 +1,6 @@
 {
   "name": "@asaitama/boolean-array",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "[7kB] Typed Array of Boolean values using only 1 bits per value with a fixed yet dynamic range of keys (auto length)",
   "devDependencies": {
     "tinyify": "^4.0.0"
