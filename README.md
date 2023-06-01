@@ -1,4 +1,4 @@
-# Boolean Array (6.2kB minified & 0 dep.)
+# Boolean Array (7kB minified & 0 dep.)
 
 ## Install
 
@@ -42,10 +42,11 @@ let bitArray = new BitArray(64);
 #### `readFourBytes`
 This getter function returns a function that reads a block of four bytes starting at index `i`, returning an array of the indices of the bits that are set within this block.
 
-javascript
+```javascript
 let bitArray = new BitArray(64);
 let read = bitArray.readFourBytes;
 let result = read(4);
+```
 
 #### `readBit`
 This getter function returns a function that reads the bit at index `i`, returning a boolean indicating whether the bit is set.
@@ -152,7 +153,7 @@ let has = setFixed.has;
 console.log(has(4));
 ```
 
-#### `add`
+#### `add` & `bulkAdd`
 This getter function returns a function that adds a given index i to the SetFixed.
 If the index given is beyond the capacity of the instance, it will be resized correctly with a margin.
 Don't worry about resizing or memory consumption, it is far more efficient than a traditional new Set() instance object if you deal with indexes below 1/4 million (indexes from 0 to 250000 will represent only a few 31kB in memory)
@@ -162,16 +163,20 @@ Don't worry about resizing or memory consumption, it is far more efficient than 
 ```javascript
 let setFixed = new SetFixed(64);
 let add = setFixed.add;
+let bulkAdd = setFixed.bulkAdd;
 add(4);
+bulkAdd([1, 2, 3, 4, 5]);
 ```
 
-#### `delete`
+#### `delete` & `bulkDelete`
 This getter function returns a function that deletes a given index i from the SetFixed.
 
 ```javascript
 let setFixed = new SetFixed(64);
 let del = setFixed.delete;
+let bulkDel = setFixed.bulkDelete;
 del(4);
+bulkDel([1, 2, 3, 4, 5]);
 ```
 
 #### `clear`

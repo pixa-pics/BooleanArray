@@ -258,11 +258,10 @@ Object.defineProperty(SetFixed.prototype, 'length', {
 Object.defineProperty(SetFixed.prototype, 'indexes', {
     get: function() {
         "use strict";
-        var a = [], l = this.length|0, i = 0;
-        for (; (i|0) < (l|0); i = (i + 32 | 0)>>>0) {
-            a.push.apply(a, this.a_.readFourBytes(i|0));
-        }
-        return a;
+        var c = this.length > 0xFFFF ? Uint32Array: this.length > 0xFF ? Uint16Array: Uint8Array, a = [], l = this.length|0, l128 = l-128|0, i = 0;
+        for (; (i|0) < (l128|0); i = (i + 128 | 0)>>>0) {a = a.concat(this.a_.readFourBytes(i|0), this.a_.readFourBytes(i+32|0), this.a_.readFourBytes(i+64|0), this.a_.readFourBytes(i+96|0));}
+        for (; (i|0) < (l|0); i = (i + 32 | 0)>>>0) { a = a.concat(this.a_.readFourBytes(i|0));}
+        return c.from(a);
     },
     enumerable: false,
     configurable: false
@@ -313,6 +312,41 @@ Object.defineProperty(SetFixed.prototype, 'delete', {
     }},
     enumerable: false,
     configurable: false
+});
+
+Object.defineProperty(SetFixed.prototype, 'bulkAdd', {
+    get: function() {  "use strict"; return function(a) {
+        "use strict";
+
+        var l = a.length|0, i = 0;
+        for(;(i|0) < (l|0); i = (i+1|0)>>>0) {
+            this.add(a[i|0]|0);
+        }
+    }},
+    enumerable: false,
+    configurable: false
+});
+
+Object.defineProperty(SetFixed.prototype, 'bulkDelete', {
+    get: function() {  "use strict"; return function(a) {
+        "use strict";
+        var l = a.length|0, i = 0;
+        for(;(i|0) < (l|0); i = (i+1|0)>>>0) {
+            this.delete(a[i|0]|0);
+        }
+
+    }},
+    enumerable: false,
+    configurable: false
+});
+
+Object.defineProperty(SetFixed.prototype, 'invert', {
+    get: function() {  "use strict"; return function() {
+        "use strict";
+        var i = this.indexes;
+        this.charge();
+        this.bulkDelete(i);
+    }}
 });
 
 Object.defineProperty(SetFixed.prototype, 'clear', {
